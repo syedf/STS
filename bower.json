@@ -1,0 +1,23 @@
+{
+  "name": "skipthesequel",
+  "description": "A movie tracker application",
+  "main": "server.js",
+  "authors": [
+    "Syed Faizan"
+  ],
+  "license": "ISC",
+  "keywords": [
+    "movies"
+  ],
+  "moduleType": [
+    "node"
+  ],
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
