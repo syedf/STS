@@ -26,3 +26,11 @@
 .seen{
     color: cornflowerblue;
 }
+.onMouseHover:hover{
+    opacity: 0.2;
+    filter: alpha(opacity=40);
+}
+.floatingButton{
+    bottom: 80px; 
+    right: 80px;
+}
