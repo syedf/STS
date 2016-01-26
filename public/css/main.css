@@ -1,0 +1,28 @@
+.thumbnail{
+    display: block;
+    max-width: 100% !important;
+    max-height: 100% !important;
+}
+.title{
+    line-height: 1.1;
+    font-size: 15px;
+    margin-top: 2px;
+    font-weight: bold;
+    text-decoration: none;
+}
+/*.movie-container {*/
+    /*height: 400px;*/
+/*}*/
+.movie-thumb {
+    height: 400px;
+}
+.movie-thumb h5 {
+    font-weight: bold;
+}
+.markAsSeen{
+    cursor: pointer;
+    color: #ee6e73;
+}
+.seen{
+    color: cornflowerblue;
+}
