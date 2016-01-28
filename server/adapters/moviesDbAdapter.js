@@ -63,3 +63,18 @@ exports.watchedMovies = function (req, res, next) {
             }
         });
 };
+exports.searchMovies = function (req, res, next) {
+    var query = {'title':{'$regex':req.query.title, '$options':'i'},'poster':{'$exists': true, '$ne': null},'imdb.id':{'$exists':true, '$ne': null}};
+    req.mongodb.collection('movieDetails')
+        .find(query)
+        .toArray(function (err,movies) {
+            if(err)
+                next(err);
+            else if(!movies){
+                res.status(400).json(movies);
+            }
+            else{
+                res.status(200).json(movies);
+            }
+        })
+};

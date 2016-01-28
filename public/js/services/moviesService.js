@@ -40,4 +40,15 @@ angular
                     console.error("Failed to fetch Watched Movies", error);
                 })
         };
+        self.searchMovies = function (query) {
+            return $http.get('/searchMovies?title='+query.title)
+                .success(function (response) {
+                    if(response.status == 200)
+                        return response.data;
+                })
+                .error(function (err) {
+                    console.error("Failed to find movies");
+                        return -1;
+                })
+        };
 }]);

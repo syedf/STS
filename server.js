@@ -36,6 +36,7 @@ mongoClient.connect(config.mongoDbUrl, function (err, db) {
     app.get('/markAsSeen', exposeDb, moviesDbAdapter.markAsSeen);
     app.get('/removeFromWatchedList', exposeDb, moviesDbAdapter.removeFromWatchedList);
     app.get('/watchedMovies', exposeDb, moviesDbAdapter.watchedMovies);
+    app.get('/searchMovies', exposeDb, moviesDbAdapter.searchMovies);
     app.get('/*',function (req, res) {
         // Server index page
         res.sendFile(__dirname+'/public/index.html');

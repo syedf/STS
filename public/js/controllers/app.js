@@ -6,7 +6,7 @@ angular
     .config(['$urlRouterProvider','$stateProvider','$locationProvider', function($urlRouterProvider,$stateProvider, $locationProvider){
 
         $locationProvider.html5Mode(true);
-        $urlRouterProvider.when('/movies', '/movies/0');
+        //$urlRouterProvider.when('/movies', '/movies/page/0');
         $urlRouterProvider.otherwise('/');
         $stateProvider
             .state('home',{
@@ -33,6 +33,19 @@ angular
                 resolve : {
                     'watchedMovies':['moviesService', function(moviesService){
                         return moviesService.getWatchedMovies().then(function (data) {
+                            return data;
+                        })
+                    }]
+                }
+                
+            })
+            .state('search',{
+                url: '/search/:title',
+                templateUrl: 'views/search.html',
+                controller: 'searchCtrl',
+                resolve: {
+                    'searchResults': ['moviesService','$stateParams', function (moviesService,$stateParams) {
+                        return moviesService.searchResults($stateParams.title).then(function (data) {
                             return data;
                         })
                     }]
