@@ -64,9 +64,14 @@ exports.watchedMovies = function (req, res, next) {
         });
 };
 exports.searchMovies = function (req, res, next) {
+    var perPage = 12
+        , page = req.query.page > 0 ? req.query.page : 0;
     var query = {'title':{'$regex':req.query.title, '$options':'i'},'poster':{'$exists': true, '$ne': null},'imdb.id':{'$exists':true, '$ne': null}};
     req.mongodb.collection('movieDetails')
         .find(query)
+        .limit(perPage)
+        .skip(perPage * page)
+        .sort({'imdb.rating': -1})
         .toArray(function (err,movies) {
             if(err)
                 next(err);
@@ -74,7 +79,11 @@ exports.searchMovies = function (req, res, next) {
                 res.status(400).json(movies);
             }
             else{
-                res.status(200).json(movies);
+                res.status(200).json({
+                    movies: movies,
+                    title: req.query.title,
+                    page: page
+                });
             }
         })
 };

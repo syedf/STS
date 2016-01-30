@@ -3,13 +3,13 @@
         <div class="input-field col m4 center">
             <input id="search" type="search" required ng-model="searchQuery.title">
             <label for="search"><i class="material-icons" >search</i></label>
-            <i class="material-icons" ng-click="clearQuery()">close</i>
+            <i class="material-icons" style="margin-top: 8px" ng-click="clearQuery()">close</i>
         </div>
     </form>
 </div>
-<div class="row" ng-show="movies.length">
+<div class="row centerBox" ng-show="movies.length">
     <div class="movie-container col s12 m8 l3" ng-repeat='movie in movies'>
-        <div class=" card medium">
+        <div class="card medium">
             <div class="card-image">
                 <a ng-href="http://www.imdb.com/title/{{movie.imdb.id}}" target="_blank">
                     <img class="thumbnail" ng-src="{{movie.poster}}"/>
@@ -24,17 +24,25 @@
                 <br/><br/>
             </div>
             <div class="card-action">
-                <a ng-click="markAsSeen(movie)" ng-hide="movie.seen" style="cursor: pointer">Mark as seen</a>
-                <a ng-click="removeFromWatchedList(movie)"ng-show="movie.seen" style="cursor: pointer">Remove from watched list</a>
+                <a ng-click="markAsSeen(movie)" ng-hide="movie.seen">Mark as seen</a>
+                <a ng-click="removeFromWatchedList(movie)" ng-show="movie.seen" class="watchedTick">
+                    <span class="watched"> Watched: <i class="material-icons" title="seen" >done</i></span>
+                    <span class="notWatched"> Remove: <i class="material-icons" title="seen" >delete</i></span>
+                </a>
             </div>
         </div>
     </div>
-    <div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
+    <div class="fixed-action-btn floatingButton">
         <a class="left btn-floating btn-large waves-effect waves-light #26a69a" ng-href="/movies/page/{{pageNum | previousPage}}" ng-class="{'disabled':!pageNum}">Prev</a>
         &nbsp;&nbsp;
         <a class="right btn-floating btn-large waves-effect waves-light #26a69a" ng-href="/movies/page/{{pageNum | nextPage}}">Next</a>
     </div>
 </div>
 <div ng-hide="movies.length">
-    <p> No movies found, feel free to add some! </p>
+    <div class="container centerBox">
+        <h3 class="center" style="color: #135058">No movies found!</h3>
+        <div class="fixed-action-btn floatingButton" >
+            <a class="btn-floating btn-large waves-effect waves-light #ee6e73 right" ui-sref="movies" title="Add movies to Watched list"><i class="material-icons">add</i></a>
+        </div>
+    </div>
 </div>

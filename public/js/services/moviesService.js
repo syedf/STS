@@ -41,7 +41,7 @@ angular
                 })
         };
         self.searchMovies = function (query) {
-            return $http.get('/searchMovies?title='+query.title)
+            return $http.get('/searchMovies?title='+query.title+'&page='+query.page)
                 .success(function (response) {
                     if(response.status == 200)
                         return response.data;

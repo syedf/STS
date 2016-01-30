@@ -4,14 +4,17 @@
   "description": "A movie tracker application",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "postinstall": "bower install && gulp"
   },
   "author": "Syed Faizan",
-  "license": "ISC",
   "dependencies": {
     "body-parser": "^1.14.2",
     "cookie-parser": "^1.4.1",
     "express": "^4.13.4",
+    "gulp": "^3.9.0",
+    "gulp-concat": "^2.6.0",
+    "gulp-uglify": "^1.5.1",
+    "gulp-watch": "^4.3.5",
     "mongodb": "^2.1.4",
     "morgan": "^1.6.1"
   }
