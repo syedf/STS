@@ -7,15 +7,16 @@ exports.getMovies =  function (req, res, next) {
     
     req.mongodb.collection('movieDetails')
         .find({'poster':{'$exists': true, '$ne': null},'imdb.id':{'$exists':true, '$ne': null}})
+        .project({_id:0,poster:1,title:1,imdb:1,seen:1,year:1})
         .limit(perPage)
         .skip(perPage * page)
         .sort({'imdb.rating': -1})
-        .toArray(function (err, docs) {
+        .toArray(function (err, movies) {
             if(err){
                 next(err)
             }
             else{
-                res.status(200).json({movies:docs,pageNum:page});
+                res.status(200).json({movies:movies,pageNum:page});
             }
         });
     
@@ -54,6 +55,7 @@ exports.removeFromWatchedList = function (req, res, next) {
 exports.watchedMovies = function (req, res, next) {
     req.mongodb.collection('movieDetails')
         .find({'seen': true})
+        .project({_id:0,poster:1,title:1,imdb:1,seen:1,year:1})
         .sort({'imdb.rating': -1})
         .toArray(function (err, movies) {
             if(err)
@@ -69,6 +71,7 @@ exports.searchMovies = function (req, res, next) {
     var query = {'title':{'$regex':req.query.title, '$options':'i'},'poster':{'$exists': true, '$ne': null},'imdb.id':{'$exists':true, '$ne': null}};
     req.mongodb.collection('movieDetails')
         .find(query)
+        .project({_id:0,poster:1,title:1,imdb:1,seen:1,year:1})
         .limit(perPage)
         .skip(perPage * page)
         .sort({'imdb.rating': -1})

@@ -9,8 +9,8 @@
             <div class="card-content">
                 <h5 class="title activator grey-text text-darken-4 truncate" title="{{movie.title}}"><a ng-href="http://www.imdb.com/title/{{movie.imdb.id}}" target="_blank">{{movie.title}}</a> </h5>
                 <h5 class="title right" title="Year of release">{{movie.year}}</h5>
-                <p class="left">
-                    <i class="tiny material-icons">grade</i>{{movie.imdb.rating}}
+                <p class="left" title="imdb rating: {{movie.imdb.rating}}">
+                    <i class="title tiny material-icons">grade</i><span class="title">{{movie.imdb.rating}}</span>
                 </p>
                 <br/><br/>
             </div>

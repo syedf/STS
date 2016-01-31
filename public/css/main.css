@@ -9,10 +9,8 @@
     margin-top: 2px;
     font-weight: bold;
     text-decoration: none;
+    color: black;
 }
-/*.movie-container {*/
-    /*height: 400px;*/
-/*}*/
 .movie-thumb {
     height: 400px;
 }
