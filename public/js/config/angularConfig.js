@@ -6,13 +6,12 @@ angular
     .config(['$urlRouterProvider','$stateProvider','$locationProvider', function($urlRouterProvider,$stateProvider, $locationProvider){
 
     $locationProvider.html5Mode(true);
-    //$urlRouterProvider.when('/movies', '/movies/page/0');
+    $urlRouterProvider.when('/movies/page/', '/movies/page/0');
     $urlRouterProvider.otherwise('/');
     $stateProvider
         .state('home',{
             url: '/',
-            templateUrl: '/views/home.html',
-            controller: 'homeCtrl'
+            templateUrl: '/views/home.html'
         })
         .state('movies',{
             url: '/movies/page/:page',
