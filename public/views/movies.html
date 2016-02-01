@@ -1,7 +1,7 @@
 <div class="container">
     <form ng-submit="searchMovies(searchQuery)">
         <div class="input-field col m4 center">
-            <input id="search" type="search" required ng-model="searchQuery.title" title="Search">
+            <input id="search" type="search" required ng-model="searchQuery.title" title="Search Movies">
             <label for="search"><i class="material-icons" >search</i></label>
             <i class="material-icons" style="margin-top: 8px" ng-click="clearQuery()">close</i>
         </div>
@@ -40,7 +40,7 @@
 </div>
 <div ng-hide="movies.length">
     <div class="container centerBox">
-        <h3 class="center" style="color: #135058">No movies found!</h3>
+        <h3 class="center" style="color: white">No movies found!</h3>
         <div class="fixed-action-btn floatingButton" >
             <a class="btn-floating btn-large waves-effect waves-light #ee6e73 right" ui-sref="movies" title="Add movies to Watched list"><i class="material-icons">add</i></a>
         </div>
