@@ -5,6 +5,7 @@ var express = require('express'),
     cookieParser = require('cookie-parser'),
     bodyParser = require('body-parser'),
     morgan = require('morgan'),
+    favicon = require('serve-favicon'),
     moviesDbAdapter = require('./server/adapters/moviesDbAdapter');
 
 var environment = config.env || 'dev';
@@ -14,6 +15,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 app.use(cookieParser());
 app.use(express.static('public'));
+app.use(favicon(__dirname+'/public/favicon.ico'));
 app.use(function (err, req, res, next) {
     console.error(err.stack);
     res.status(500).send('Something broke!');
