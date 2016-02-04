@@ -2,12 +2,12 @@
     <div class="movie-container col s12 m8 l3" ng-repeat='movie in movies'>
         <div class=" card medium">
             <div class="card-image">
-                <a ng-href="http://www.imdb.com/title/{{movie.imdb.id}}" target="_blank">
+                <a ui-sref="movie({id:movie.imdb.id})" >
                     <img class="thumbnail" ng-src="{{movie.poster}}"/>
                 </a>
             </div>
             <div class="card-content">
-                <h5 class="title activator grey-text text-darken-4 truncate" title="{{movie.title}}"><a ng-href="http://www.imdb.com/title/{{movie.imdb.id}}" target="_blank">{{movie.title}}</a> </h5>
+                <h5 class="title activator grey-text text-darken-4 truncate" title="{{movie.title}}"><a ui-sref="movie({id:movie.imdb.id})" >{{movie.title}}</a> </h5>
                 <h5 class="title right" title="Year of release">{{movie.year}}</h5>
                 <p class="left" title="imdb rating: {{movie.imdb.rating}}">
                     <i class="title tiny material-icons">grade</i><span class="title">{{movie.imdb.rating}}</span>
@@ -17,8 +17,8 @@
             <div class="card-action">
                 <a ng-click="markAsSeen(movie)" ng-hide="movie.seen">Mark as seen</a>
                 <a ng-click="removeFromWatchedList(movie)" ng-show="movie.seen" class="watchedTick">
-                    <span class="watched"> Watched: <i class="material-icons" title="seen" >done</i></span>
-                    <span class="notWatched"> Remove: <i class="material-icons" title="seen" >delete</i></span>
+                    <span class="watched"> Watched: <i class="material-icons right" title="seen" >done</i></span>
+                    <span class="notWatched"> Remove: <i class="material-icons right" title="seen" >delete</i></span>
                 </a>
             </div>
         </div>

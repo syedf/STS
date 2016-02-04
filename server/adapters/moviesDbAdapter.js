@@ -90,3 +90,14 @@ exports.searchMovies = function (req, res, next) {
             }
         })
 };
+exports.getMovie = function (req, res, next) {
+    req.mongodb
+        .collection('movieDetails')
+        .find({'imdb.id': req.query.id})
+        .toArray(function (err, movie) {
+            if(err)
+                next(err);
+            else
+                res.status(200).send(movie.pop());
+        })
+};

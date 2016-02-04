@@ -49,6 +49,18 @@ angular
                     })
                 }]
             }
-
+        })
+        .state('movie',{
+            url: '/movie/:id',
+            templateUrl: 'views/movieInfo.html',
+            controller: 'movieCtrl',
+            resolve:{
+                'getMovie': ['moviesService','$stateParams', function (moviesService,$stateParams) {
+                    return moviesService.getMovie($stateParams.id)
+                        .then(function (data) {
+                            return data;
+                        })
+                }]
+            }
         })
 }]);

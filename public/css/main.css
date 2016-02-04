@@ -17,6 +17,9 @@
 .movie-thumb h5 {
     font-weight: bold;
 }
+.bold {
+    font-weight: bold;
+}
 .markAsSeen{
     cursor: pointer;
     color: #ee6e73;
@@ -52,7 +55,6 @@ body {
      background:      -o-linear-gradient(90deg, #135058 10%, #F1F2B5 90%); /* Opera 11.10+ */
      background:         linear-gradient(90deg, #135058 10%, #F1F2B5 90%); /* W3C */
 
-     color: #fff;
  }
 a{
     color: #136a8a;

@@ -1,0 +1,80 @@
+<div class="container">
+    <div class="row card-panel">
+        <div class="col s5 push-s7">
+            <img class="responsive-img" data-ng-src="{{movie.poster}}">
+        </div>
+        <div class="col s7 pull-s5">
+            <div class="card-panel">
+                <h5 class="black-text text-darken-2">{{movie.title}} ({{movie.year}})</h5>
+            </div>
+            <div class="card-panel" data-ng-show="movie.plot">
+                <h7 class="container lighten-2">{{movie.plot}}</h7>
+            </div>
+            <div class="card-panel">
+                <a class="btn" style="width: 100%;" data-ng-click="markAsSeen(movie)" data-ng-hide="movie.seen">Mark as seen</a>
+                <a data-ng-click="removeFromWatchedList(movie)" data-ng-show="movie.seen" class="watchedTick">
+                    <span class="watched"> Watched: <i class="material-icons right" title="seen">done</i></span>
+                    <span class="notWatched"> Remove: <i class="material-icons right" title="seen" >delete</i></span>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div id="rating" class="row card-panel">
+        <p class="collection-header"><h4>Movie Details</h4></p>
+        <ul class="collapsible collapsible-accordion" data-collapsible="accordion">
+            <li>
+                <div class="collapsible-header"><i class="material-icons">theaters</i>Genre</div>
+                <div class="collapsible-body">
+                    <ul class="collection card">
+                        <li class="collection-item" data-ng-repeat="genre in movie.genres track by $index">{{genre}}</li>
+                    </ul>
+                </div>
+            </li>
+            <li class="active">
+                <div class="collapsible-header"><i class="material-icons">thumbs_up_down</i>Rating</div>
+                <div style="display: block;" class="collapsible-body container">
+                    <ul class="collapsible collapsible-accordion" data-collapsible="accordion">
+                        <li id="imdb">
+                            <div class="collapsible-header" data-ng-show="movie.imdb.rating"><i class="material-icons">filter_drama</i>IMDB: {{movie.imdb.rating}}</div>
+                        </li>
+                        <li id="tomato">
+                            <div class="collapsible-header" data-ng-show="movie.tomato.rating"><i class="material-icons">filter_drama</i>Tomato: {{movie.tomato.rating}}</div>
+                        </li>
+                        <li id="metacritic">
+                            <div class="collapsible-header" data-ng-show="movie.metacritic"><i class="material-icons">filter_drama</i>Metacritic: {{movie.metacritic}}</div>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+            <li data-ng-show="movie.actors.length">
+                <div class="collapsible-header"><i class="material-icons">supervisor_account</i>Actors</div>
+                <div class="collapsible-body">
+                    <ul class="collection card">
+                        <li class="collection-item" data-ng-repeat="actor in movie.actors">{{actor}}</li>
+                    </ul>
+                </div>
+            </li>
+            <li data-ng-show="movie.writers.length">
+                <div class="collapsible-header"><i class="material-icons">mode_edit</i>Writers</div>
+                <div class="collapsible-body">
+                    <ul class="collection card">
+                        <li class="collection-item" data-ng-repeat="writer in movie.writers track by $index">{{writer}}</li>
+                    </ul>
+                </div>
+            </li>
+            <li data-ng-show="movie.awards.text">
+                <div class="collapsible-header"><i class="material-icons">movie</i>Awards</div>
+                <div style="" class="collapsible-body">
+                    <ul class="collection card">
+                        <li class="collection-item">{{movie.awards.text}}</li>
+                    </ul>
+                </div>
+            </li>
+        </ul>
+        <div class="card=panel valign-wrapper">
+            <a class="waves-effect waves-light btn" style="width: 100%;" data-ng-href="http://www.imdb.com/title/{{movie.imdb.id}}" target="_blank" title="View on IMDB">
+                <span class="center-align">IMDB</span>
+            </a>
+        </div>
+    </div>
+</div>

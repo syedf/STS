@@ -9,7 +9,7 @@ var express = require('express'),
 
 var environment = config.env || 'dev';
 if(environment === 'dev')
-    app.use(morgan('combined'));
+    app.use(morgan('dev'));
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 app.use(cookieParser());
@@ -37,6 +37,7 @@ mongoClient.connect(config.mongoDbUrl, function (err, db) {
     app.get('/removeFromWatchedList', exposeDb, moviesDbAdapter.removeFromWatchedList);
     app.get('/watchedMovies', exposeDb, moviesDbAdapter.watchedMovies);
     app.get('/searchMovies', exposeDb, moviesDbAdapter.searchMovies);
+    app.get('/movie', exposeDb, moviesDbAdapter.getMovie);
     app.get('/*',function (req, res) {
         // Server index page
         res.sendFile(__dirname+'/public/index.html');

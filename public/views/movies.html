@@ -1,22 +1,25 @@
 <div class="container">
-    <form ng-submit="searchMovies(searchQuery)">
+    <form data-ng-submit="searchMovies(searchQuery)">
         <div class="input-field col m4 center">
-            <input id="search" type="search" required ng-model="searchQuery.title" title="Search">
-            <label for="search"><i class="material-icons" >search</i></label>
-            <i class="material-icons" style="margin-top: 8px" ng-click="clearQuery()">close</i>
+            <label for="search"><i class="material-icons prefix">search</i></label>
+            <input id="search" type="search" required data-ng-model="searchQuery.title" title="Enter a keyword" class="validate">
+            <i class="material-icons center-cancel-btn"  data-ng-click="clearQuery()">close</i>
+            <button data-ng-show="searchQuery.title" class="btn waves-effect waves-light" type="submit" name="action">Submit
+                <i class="material-icons">send</i>
+            </button>
         </div>
     </form>
 </div>
-<div class="row centerBox" ng-show="movies.length">
-    <div class="movie-container col s12 m8 l3" ng-repeat='movie in movies'>
+<div class="row centerBox" data-ng-show="movies.length">
+    <div class="movie-container col s12 m8 l3" data-ng-repeat='movie in movies'>
         <div class="card medium">
-            <div class="card-image">
-                <a ng-href="http://www.imdb.com/title/{{movie.imdb.id}}" target="_blank">
-                    <img class="thumbnail" ng-src="{{movie.poster}}"/>
+            <div class="card-image waves-effect">
+                <a ui-sref="movie({id:movie.imdb.id})">
+                    <img class="thumbnail" data-ng-src="{{movie.poster}}"/>
                 </a>
             </div>
             <div class="card-content">
-                <h5 class="title activator grey-text text-darken-4 truncate" title="{{movie.title}}"><a ng-href="http://www.imdb.com/title/{{movie.imdb.id}}" target="_blank">{{movie.title}}</a> </h5>
+                <h5 class="title activator grey-text text-darken-4 truncate" title="{{movie.title}}"><a ui-sref="movie({id:movie.imdb.id})">{{movie.title}}</a> </h5>
                 <h5 class="title right" title="Year of release">{{movie.year}}</h5>
                 <p class="left" title="imdb rating: {{movie.imdb.rating}}">
                     <i class="title tiny material-icons">grade</i><span class="title">{{movie.imdb.rating}}</span>
@@ -24,25 +27,25 @@
                 <br/><br/>
             </div>
             <div class="card-action">
-                <a ng-click="markAsSeen(movie)" ng-hide="movie.seen">Mark as seen</a>
-                <a ng-click="removeFromWatchedList(movie)" ng-show="movie.seen" class="watchedTick">
-                    <span class="watched"> Watched: <i class="material-icons" title="seen" >done</i></span>
-                    <span class="notWatched"> Remove: <i class="material-icons" title="seen" >delete</i></span>
+                <a data-ng-click="markAsSeen(movie)" data-ng-hide="movie.seen">Mark as seen</a>
+                <a data-ng-click="removeFromWatchedList(movie)" data-ng-show="movie.seen" class="watchedTick">
+                    <span class="watched"> Watched: <i class="material-icons right" title="seen">done</i></span>
+                    <span class="notWatched"> Remove: <i class="material-icons right" title="seen" >delete</i></span>
                 </a>
             </div>
         </div>
     </div>
     <div class="fixed-action-btn floatingButton">
-        <a class="left btn-floating btn-large waves-effect waves-light #26a69a" ng-href="/movies/page/{{pageNum | previousPage}}" ng-class="{'disabled':!pageNum}">Prev</a>
+        <a class="left btn-floating btn-large waves-effect waves-light #26a69a" ui-sref="{page:{{pageNum | previousPage}}}" data-ng-class="{'disabled':!pageNum}">Prev</a>
         &nbsp;&nbsp;
-        <a class="right btn-floating btn-large waves-effect waves-light #26a69a" ng-href="/movies/page/{{pageNum | nextPage}}">Next</a>
+        <a class="right btn-floating btn-large waves-effect waves-light #26a69a" ui-sref="{page:{{pageNum | nextPage}}}">Next</a>
     </div>
 </div>
-<div ng-hide="movies.length">
+<div data-ng-hide="movies.length">
     <div class="container centerBox">
         <h3 class="center" style="color: #135058">No movies found!</h3>
         <div class="fixed-action-btn floatingButton" >
-            <a class="btn-floating btn-large waves-effect waves-light #ee6e73 right" ui-sref="movies" title="Add movies to Watched list"><i class="material-icons">add</i></a>
+            <a class="btn-floating btn-large waves-effect waves-light #ee6e73 right" data-ui-sref="movies" title="Add movies to Watched list"><i class="material-icons">add</i></a>
         </div>
     </div>
 </div>
