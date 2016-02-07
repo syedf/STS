@@ -6,10 +6,11 @@ var express = require('express'),
     bodyParser = require('body-parser'),
     morgan = require('morgan'),
     favicon = require('serve-favicon'),
+	open = require('opn'),
     moviesDbAdapter = require('./server/adapters/moviesDbAdapter');
 
-var environment = config.env || 'dev';
-if(environment === 'dev')
+var environment = config.env || 'production';
+if(environment === 'development')
     app.use(morgan('dev'));
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
@@ -46,6 +47,7 @@ mongoClient.connect(config.mongoDbUrl, function (err, db) {
     });
     app.listen(config.port, function () {
         console.log('Listening to port '+config.port);
+		open('http://localhost:3000',{app:'chrome'});
     });
 });
 
