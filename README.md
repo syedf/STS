@@ -1,5 +1,5 @@
 # STS | Skip The Sequel
-A mean stack app to track watched movies.
+A mean stack website to track watched movies.
 
 
 Instructions to install:
